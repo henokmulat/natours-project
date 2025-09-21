@@ -47,6 +47,7 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+config.env
 
 # Optional lock files (ignore if using a different package manager)
 # package-lock.json
