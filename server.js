@@ -15,26 +15,14 @@ mongoose
   .connect(DB, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useFindAndModify: false,
+    useUnifiedTopology: true,
+    // useFindAndModify: false,
   })
   .then((con) => {
-    console.log(con);
+    // console.log(con);
     console.log('Database connected Successfully');
-  });
-
-const tourSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'A tour must have a name'],
-    unique: true,
-  },
-  rating: { type: Number, default: 4.5 },
-  price: { type: Number, required: [true, 'A tour must have a price'] },
-});
-
-const Tour = mongoose.model('Tour', tourSchema);
-
-// console.log(process.env);
+  })
+  .catch((err) => console.error('DB Connection Error:', err));
 
 const port = process.env.PORT || 3000;
 
