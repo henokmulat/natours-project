@@ -19,6 +19,11 @@ const userSchema = new mongoose.Schema({
     validate: [validator.isEmail, 'Please provide a valid email'],
   },
   photo: String,
+  role: {
+    type: String,
+    enum: ['user', 'guide', 'lead-guide', 'admin'],
+    default: 'user',
+  },
   password: {
     type: String,
     required: [true, 'Please provide a password'],
@@ -43,7 +48,7 @@ userSchema.pre('save', async function (next) {
   // only run this function if password was modified
   if (!this.isModified('password')) return next();
   //Hash the password with the cost of 12
-  this.password = await bcrypt.hash(this.password, 8);
+  this.password = await bcrypt.hash(this.password, 12);
   // Delete the password confirm field
   this.passwordConfirm = undefined;
 });
