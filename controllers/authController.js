@@ -92,3 +92,18 @@ exports.restrictTo =
     }
     next();
   };
+
+exports.forgotPassword = catchAsync(async (req, res, next) => {
+  // 1) find the user by the email
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    return next(new AppError('There is no user with the email address.', 404));
+  }
+  // 2) generate reset email
+  // eslint-disable-next-line no-unused-vars
+  const resetToken = user.createPasswordResetToken();
+  await user.save({ validateBeforeSave: false });
+  // 3) send the reset token to the user
+});
+
+exports.resetPassword = (req, res, next) => {};
