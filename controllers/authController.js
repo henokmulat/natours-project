@@ -69,6 +69,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
+    console.log(token);
   }
 
   if (!token) {
@@ -80,13 +81,21 @@ exports.protect = catchAsync(async (req, res, next) => {
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
   console.log(decoded);
   // 3 check if the user still exists
-  const freshUser = await User.findById(decoded.id);
-  if (!freshUser) {
+  const currentUser = await User.findById(decoded.id);
+  if (!currentUser) {
     return next(
       new AppError('The user belong to this token does not exist', 401),
     );
   }
   // 4 check if user changed password after the token was issued
+  if (currentUser.changedPasswordAfter(decoded.iat)) {
+    return next(
+      new AppError('User recently changed password! Please login again!', 401),
+    );
+  }
+  // GRANT ACCESS TO  PROTECTED ROUTE
+  req.user = currentUser;
+  next();
 });
 
 exports.restrictTo =
