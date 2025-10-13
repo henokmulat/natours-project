@@ -63,6 +63,15 @@ exports.createUser = (req, res) => {
   });
 };
 
+exports.deleteMe = catchAsync(async (req, res, next) => {
+  const user = await User.findByIdAndUpdate(req.body.id, { active: false });
+  console.log('user: ', user);
+  res.status(204).json({
+    status: 'success',
+    data: null,
+  });
+});
+
 exports.updateUser = (req, res) => {
   res.status(500).json({
     status: 'error',
