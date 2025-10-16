@@ -1,7 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-const viewsController = require('./controllers/viewsController');
+const viewsController = require('../controllers/viewsController');
 
 router.get('/', (req, res) =>
   res.status(200).render('base', {
