@@ -1,3 +1,4 @@
+const path = require('path');
 /* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
 const morgan = require('morgan');
@@ -14,8 +15,11 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 
 const app = express();
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
 // 1) Global middlewares
-
+// Serving static files
+app.use(express.static(path.join(__dirname, 'public')));
 // Set security to HTTP headers
 app.use(helmet());
 // Development logging
@@ -50,15 +54,21 @@ app.use(
     ],
   }),
 );
-// Serving static files
-app.use(express.static(`${__dirname}/public`));
+
 // Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   // console.log(req.headers);
   next();
 });
+// Routes
 
+app.get('/', (req, res) =>
+  res.status(200).render('base', {
+    tour: 'The Forest Hiker',
+    user: 'Jonas',
+  }),
+);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
