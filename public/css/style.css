@@ -607,6 +607,35 @@ body {
   overflow-x: scroll;
   -ms-scroll-snap-type: x mandatory;
   scroll-snap-type: x mandatory;
+
+  /* Hide scrollbar by default (for Firefox) */
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* IE & Edge */
+}
+
+/* Hide scrollbar by default (for Chrome, Safari) */
+.reviews::-webkit-scrollbar {
+  height: 8px; /* you can adjust this */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.reviews::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+}
+
+.reviews::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* When user is interacting — show scrollbar */
+.reviews:hover::-webkit-scrollbar {
+  opacity: 1;
+}
+
+.reviews:hover {
+  scrollbar-width: thin; /* Firefox: make it appear thin on hover */
 }
 .reviews__card {
   width: 30rem;
