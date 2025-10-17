@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const viewsController = require('../controllers/viewsController');
+const authController = require('../controllers/authController');
 
 router.get('/', (req, res) =>
   res.status(200).render('base', {
@@ -12,7 +13,7 @@ router.get('/', (req, res) =>
 
 router.get('/overview', viewsController.getOverview);
 
-router.get('/tour/:slug', viewsController.getTour);
+router.get('/tour/:slug', authController.protect, viewsController.getTour);
 
 // Login
 
