@@ -15,5 +15,22 @@
     "class-methods-use-this": "off",
     "prefer-destructuring": ["error", { "object": true, "array": false }],
     "no-unused-vars": ["error", { "argsIgnorePattern": "req|res|next|val" }]
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "public/js/login.js",
+        "public/js/mapbox.js",
+        "public/js/index.js",
+        "public/js/alerts.js"
+      ], // ⬅ change to your file path
+      "parserOptions": {
+        "sourceType": "module"
+      },
+      "env": {
+        "browser": true,
+        "es6": true
+      }
+    }
+  ]
 }
