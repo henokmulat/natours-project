@@ -4,16 +4,10 @@ const router = express.Router();
 const viewsController = require('../controllers/viewsController');
 const authController = require('../controllers/authController');
 
-router.get('/', (req, res) =>
-  res.status(200).render('base', {
-    tour: 'The Forest Hiker',
-    user: 'Jonas',
-  }),
-);
+router.use(authController.isLoggedIn);
 
-router.get('/overview', viewsController.getOverview);
-
-router.get('/tour/:slug', authController.protect, viewsController.getTour);
+router.get('/', viewsController.getOverview);
+router.get('/tour/:slug', viewsController.getTour);
 
 // Login
 
