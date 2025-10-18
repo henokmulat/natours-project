@@ -1,5 +1,5 @@
 /* eslint-disable */
-const displayMap = (locations) => {
+export const displayMap = (locations) => {
   // 1️⃣ Initialize Leaflet map
   const map = L.map('map', {
     scrollWheelZoom: false, // equivalent to scrollZoom: false
