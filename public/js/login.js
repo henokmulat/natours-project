@@ -1,6 +1,8 @@
 /* eslint-disable*/
-
-const login = async (email, password) => {
+import '@babel/polyfill';
+import { showAlert } from './alerts';
+import axios from 'axios';
+export const login = async (email, password) => {
   try {
     const res = await axios({
       method: 'POST',
@@ -10,21 +12,16 @@ const login = async (email, password) => {
         password,
       },
     });
-    if (res.data.status === 'success') {
-      alert('Logged in successfully!');
+    console.log('RES:', res);
+    console.log('RES DATA:', res.data);
+    if (res.statusText === 'OK') {
+      showAlert('success', 'Logged in successfully!');
       window.setTimeout(() => {
         location.assign('/');
       }, 1500);
     }
   } catch (err) {
     console.log(err);
-    alert(err.response.data.message);
+    showAlert('error', err.response.data.message);
   }
 };
-
-document.querySelector('.form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  login(email, password);
-});
