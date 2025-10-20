@@ -3,6 +3,7 @@ import '@babel/polyfill';
 import { showAlert } from './alerts';
 import axios from 'axios';
 export const login = async (email, password) => {
+  console.log('-----------------Login triggered-------------');
   try {
     const res = await axios({
       method: 'POST',
@@ -34,9 +35,15 @@ export const logout = async () => {
       url: 'http://127.0.0.1:3000/api/v1/users/logout',
     });
     console.log(res);
-    if (res.data.status === 'success') {
+    if (res.statusText === 'OK') {
       showAlert('success', 'Successfully logout');
-      location.reload(true);
+      // window.setTimeout(() => {
+      // location.reload(true);
+      // }, 1500);
+      // window.setTimeout(() => {
+      //   location.assign('/');
+      // }, 1500);
+      window.location.href = '/login';
     }
   } catch (err) {
     console.error('Logout error:', err);

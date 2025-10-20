@@ -10,6 +10,12 @@ const filterObj = (obj, ...allowedFields) => {
   });
   return newObj;
 };
+exports.createUser = (req, res) => {
+  res.status(500).json({
+    status: 'error',
+    message: 'This route is not defined! Please use /signup instead',
+  });
+};
 
 exports.updateMe = catchAsync(async (req, res, next) => {
   // 1) create error if the user POSTS password data
@@ -24,7 +30,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   // 2) filtered out unwanted fields that are not allowed to be updated
   const filteredBody = filterObj(req.body, 'name', 'email');
   // 3) update user document
-  const updatedUser = await User.findByIdAndUpdate(req.body.id, filteredBody, {
+  const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
     new: true,
     runValidators: true,
   });
