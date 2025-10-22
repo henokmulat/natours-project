@@ -23,7 +23,8 @@
         "public/js/mapbox.js",
         "public/js/index.js",
         "public/js/alerts.js",
-        "public/js/updateSettings.js"
+        "public/js/updateSettings.js",
+        "public/js/stripe.js"
       ], // ⬅ change to your file path
       "parserOptions": {
         "sourceType": "module"
