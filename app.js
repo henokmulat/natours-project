@@ -26,6 +26,49 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 // Set security to HTTP headers
 app.use(helmet());
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: [
+        "'self'",
+        'https://js.stripe.com',
+        'https://checkout.stripe.com',
+        'https://unpkg.com',
+      ],
+      styleSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        'https://fonts.googleapis.com',
+        'https://unpkg.com',
+      ],
+      imgSrc: [
+        "'self'",
+        'data:',
+        'https://images.unsplash.com',
+        'https://*.tile.openstreetmap.org',
+      ],
+      fontSrc: ["'self'", 'https://fonts.gstatic.com'],
+      connectSrc: [
+        "'self'",
+        'https://js.stripe.com',
+        'https://checkout.stripe.com',
+        'https://api.stripe.com',
+        'http://127.0.0.1:3000',
+      ],
+      frameSrc: [
+        "'self'",
+        'https://js.stripe.com',
+        'https://checkout.stripe.com',
+      ],
+      objectSrc: ["'none'"],
+      frameAncestors: ["'self'"],
+      upgradeInsecureRequests: [],
+    },
+  }),
+);
+
 // Development logging
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
