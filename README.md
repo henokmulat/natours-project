@@ -13,10 +13,7 @@
 
 ##  Overview
 
-**Natours API** is a production-ready backend for a nature tour booking service.  
-It is the core project from **Jonas Schmedtmann’s "Node.js, Express, MongoDB & More: The Complete Bootcamp"** — fully restructured and enhanced for real-world deployment and portfolio presentation.
-
-This backend powers a tour-booking platform where users can browse available tours, book them securely using Stripe payments, and manage their profiles — all while maintaining top-level performance and security standards.
+Natours API is a production-ready backend for a comprehensive nature tour booking platform, designed with scalability, performance, and security in mind. It enables users to browse and filter tours, book them securely through Stripe payments, and manage their profiles and bookings effortlessly. Built with Node.js, Express, and MongoDB, the API follows modern RESTful design principles and includes advanced features such as authentication, data validation, rate limiting, and error handling — making it optimized for real-world deployment and a reliable foundation for modern web applications.
 
 ---
 
