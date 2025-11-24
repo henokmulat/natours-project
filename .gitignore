@@ -48,6 +48,7 @@ Thumbs.db
 *.swp
 *.swo
 config.env
+.cache/
 
 # Optional lock files (ignore if using a different package manager)
 # package-lock.json
