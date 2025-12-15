@@ -1,6 +1,6 @@
 #  Natours API
 
-> A complete **RESTful API** for a fictional **tour booking application**, built with **Node.js**, **Express**, **MongoDB**, and **Mongoose** — featuring authentication, authorization, security, and advanced backend engineering concepts.
+>Natours API is a **production-ready RESTful backend** for a nature tour booking platform, designed with scalability, performance, and security in mind. A complete **RESTful API** for a fictional **tour booking application**, built with **Node.js**, **Express**, **MongoDB**, and **Mongoose** — featuring authentication, authorization, security, and advanced backend engineering concepts.
 
 ![Node.js](https://img.shields.io/badge/Node.js-18.x-green?logo=node.js)
 ![Express](https://img.shields.io/badge/Express.js-Framework-black)
